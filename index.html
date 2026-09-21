@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="NIA - Neuroassistente de Inclusão e Acessibilidade"
+  >
+
+  <title>NIA | Neuroassistente</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="topo">
+
+    <div class="marca">
+      <div class="logo">N</div>
+
+      <div>
+        <strong>NIA</strong>
+        <span>Neuroassistente</span>
+      </div>
+    </div>
+
+    <div class="privacidade">
+      <span class="ponto"></span>
+      Privacidade em primeiro lugar
+    </div>
+
+  </header>
+
+
+  <main class="container">
+
+    <!-- TELA INICIAL -->
+
+    <section class="inicio" id="inicio">
+
+      <div class="simbolo">
+        N
+      </div>
+
+      <p class="etiqueta">
+        Neuroinclusão • Acessibilidade • Privacidade
+      </p>
+
+      <h1>
+        Como posso tornar seu trabalho mais claro hoje?
+      </h1>
+
+      <p class="descricao">
+        A NIA ajuda a reduzir a sobrecarga cognitiva,
+        organizar informações e adaptar a comunicação
+        de acordo com suas necessidades.
+      </p>
+
+
+      <div class="acoes">
+
+        <button
+          class="cartao"
+          onclick="usarSugestao('Simplifique esta mensagem para deixá-la mais clara e objetiva: ')"
+        >
+          <span class="icone">✦</span>
+
+          <div>
+            <strong>Simplificar uma mensagem</strong>
+            <small>
+              Transformar textos complexos em uma comunicação mais clara.
+            </small>
+          </div>
+        </button>
+
+
+        <button
+          class="cartao"
+          onclick="usarSugestao('Organize estas tarefas por prioridade e transforme-as em etapas: ')"
+        >
+          <span class="icone">✓</span>
+
+          <div>
+            <strong>Organizar tarefas</strong>
+            <small>
+              Criar prioridades e dividir atividades em pequenas etapas.
+            </small>
+          </div>
+        </button>
+
+
+        <button
+          class="cartao"
+          onclick="usarSugestao('Resuma este conteúdo destacando apenas as informações essenciais: ')"
+        >
+          <span class="icone">≡</span>
+
+          <div>
+            <strong>Resumir informações</strong>
+            <small>
+              Identificar os pontos principais de textos extensos.
+            </small>
+          </div>
+        </button>
+
+
+        <button
+          class="cartao"
+          onclick="usarSugestao('Ajude-me a preparar esta reunião de forma objetiva: ')"
+        >
+          <span class="icone">◷</span>
+
+          <div>
+            <strong>Preparar uma reunião</strong>
+            <small>
+              Organizar pauta, prioridades e próximos passos.
+            </small>
+          </div>
+        </button>
+
+      </div>
+
+
+      <div class="principio">
+        <span>🔒</span>
+
+        <p>
+          Você não precisa informar diagnóstico ou condição médica.
+          A NIA trabalha a partir das suas preferências e necessidades.
+        </p>
+      </div>
+
+    </section>
+
+
+    <!-- CONVERSA -->
+
+    <section class="chat" id="chat">
+
+      <div class="cabecalho-chat">
+        <button onclick="novaConversa()" class="voltar">
+          ← Nova conversa
+        </button>
+      </div>
+
+      <div id="mensagens"></div>
+
+    </section>
+
+  </main>
+
+
+  <!-- CAMPO DE MENSAGEM -->
+
+  <footer class="area-mensagem">
+
+    <div class="caixa-mensagem">
+
+      <textarea
+        id="mensagem"
+        rows="1"
+        placeholder="Digite uma mensagem para a NIA..."
+        aria-label="Mensagem para a NIA"
+      ></textarea>
+
+      <button
+        id="botaoEnviar"
+        onclick="enviarMensagem()"
+        aria-label="Enviar mensagem"
+      >
+        ↑
+      </button>
+
+    </div>
+
+    <p class="aviso">
+      A NIA é um protótipo de pesquisa em neuroinclusão.
+      Revise informações importantes antes de utilizá-las.
+    </p>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>

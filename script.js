@@ -14,9 +14,9 @@ mensagens.setAttribute('aria-live','polite');
 mensagemInput.maxLength=6000;
 async function verificarIA() {
   try {
-    const r=await fetch(API+'/api/status',{signal:AbortSignal.timeout(5000)});
+    const r=await fetch(API+'/api/status',{signal:AbortSignal.timeout(8000)});
     const d=await r.json();
-    statusIA.textContent=d.ready?'IA local pronta • Conversa mantida apenas nesta página':(d.error || 'Preparando a IA: falta baixar o modelo.');
+    statusIA.textContent=d.ready?'Gemini pronto • Conversa não fica salva neste computador • Mensagens vão para a Google':(d.error || 'Gemini indisponível.');
   } catch { statusIA.textContent='IA desconectada • Abra Iniciar NIA na pasta do projeto.'; }
 }
 function usarSugestao(texto) { mensagemInput.value=texto;mensagemInput.focus();ajustarTextarea(); }
@@ -37,18 +37,18 @@ async function enviarMensagem() {
   const texto=mensagemInput.value.trim();if(!texto || solicitacao)return;
   abrirChat();adicionarMensagem(texto,'usuario');mensagemInput.value='';ajustarTextarea();
   const controller=new AbortController();solicitacao=controller;botao.disabled=true;
-  const indicador=adicionarMensagem('Pensando… A primeira resposta pode levar mais tempo.','nia');
-  const timer=setTimeout(()=>controller.abort(),245000);
+  const indicador=adicionarMensagem('Pensando…','nia');
+  const timer=setTimeout(()=>controller.abort(),65000);
   try {
     const contexto=[...historico.slice(-12),{role:'user',content:texto}];
     const r=await fetch(API+'/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:contexto}),signal:controller.signal});
     const d=await r.json();if(!r.ok)throw new Error(d.error || 'Não foi possível obter uma resposta.');
     if(solicitacao!==controller)return;
     historico=[...contexto,{role:'assistant',content:d.resposta}];indicador.remove();adicionarMensagem(d.resposta,'nia');
-    statusIA.textContent='IA local conectada • Conversa mantida apenas nesta página';
+    statusIA.textContent='Gemini pronto • Conversa não fica salva neste computador • Mensagens vão para a Google';
   } catch(error) {
     if(solicitacao!==controller)return;
-    indicador.remove();adicionarMensagem(error.name==='AbortError'?'A resposta demorou demais. Tente novamente com um texto menor.':(error instanceof TypeError?'Não consegui conectar. Abra Iniciar NIA e confirme que o Ollama está aberto.':error.message),'nia');
+    indicador.remove();adicionarMensagem(error.name==='AbortError'?'A resposta demorou demais. Tente novamente com um texto menor.':(error instanceof TypeError?'Não consegui conectar. Abra Iniciar NIA na pasta do projeto.':error.message),'nia');
     mensagemInput.value=texto;ajustarTextarea();
   } finally {clearTimeout(timer);if(solicitacao===controller){solicitacao=null;botao.disabled=false;mensagemInput.focus();}}
 }

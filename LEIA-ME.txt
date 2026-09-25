@@ -1,17 +1,24 @@
-NIA - IA local
+NIA - Neuroassistente com Gemini
 
-1. Abra o Ollama.
-2. Na primeira utilização, execute: ollama pull llama3.2:1b
-3. Abra "Iniciar NIA.cmd" e mantenha a janela aberta.
-4. Acesse http://127.0.0.1:8000
+Requisito: Node.js 18 ou superior.
+
+Para usar o chat no seu computador:
+1. Clone este repositório
+2. Copie .env.example para .env
+3. Crie uma chave em https://aistudio.google.com/apikey
+4. Cole a chave em GEMINI_API_KEY no arquivo .env
+5. Abra "Iniciar NIA.cmd" e mantenha a janela aberta
+6. Acesse http://127.0.0.1:8000
 
 O endereço antigo http://127.0.0.1:5500 também funciona se o Live Server estiver ligado e a NIA iniciada.
-As respostas vêm do Llama 3.2 1B, executado localmente pelo Ollama.
-Não exige chave de API. A instalação e o download do modelo usam internet.
+As respostas vêm do Gemini (padrão gemini-3-flash-preview). Não usa Ollama.
 A aplicação não grava conversas em arquivos ou no armazenamento do navegador.
 Nova conversa ou recarregar a página apaga o histórico da interface.
-São enviados ao modelo até seis pares recentes de mensagens, sujeitos ao limite de contexto.
-O modelo é pequeno para reduzir o uso de memória; revise suas respostas.
+As mensagens da conversa são enviadas à API do Gemini, da Google.
+São enviados ao modelo até seis pares recentes de mensagens.
 
-Requisitos: Node.js 18 ou superior, Ollama e modelo llama3.2:1b.
-Documentação: https://docs.ollama.com/api/chat
+Não compartilhe o arquivo .env. A chave fica só no servidor local.
+
+GitHub Pages (se estiver publicado) mostra só a interface visual.
+O chat não funciona no site publicado: o navegador dos visitantes não alcança o servidor local nem a chave.
+Para conversar, use Iniciar NIA.cmd no seu computador.

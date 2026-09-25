@@ -1,0 +1,4 @@
+.env
+servidor.log
+servidor-erros.log
+backup-*/
